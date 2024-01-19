@@ -1,0 +1,11 @@
+FROM rust:1.72 as builder
+
+WORKDIR /app
+RUN cargo install --version="~0.7" sqlx-cli --no-default-features --features rustls,postgres 
+
+FROM debian:bookworm-slim AS runtime
+
+COPY --from=builder /usr/local/cargo/bin/sqlx sqlx
+
+ENTRYPOINT ["./sqlx"]
+CMD ["database", "create"]
