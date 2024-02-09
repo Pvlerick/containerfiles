@@ -1,0 +1,9 @@
+FROM alpine:latest
+
+ARG VERSION=0.32.6
+
+RUN wget https://releases.hashicorp.com/terraform-ls/${VERSION}/terraform-ls_${VERSION}_linux_amd64.zip \
+    && unzip terraform-ls_${VERSION}_linux_amd64.zip -d /bin \
+    && rm terraform-ls_${VERSION}_linux_amd64.zip
+
+ENTRYPOINT [ "terraform-ls", "serve" ]

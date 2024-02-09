@@ -1,0 +1,5 @@
+FROM alpine:latest
+
+RUN apk update && apk add go gopls && apk cache clean
+
+ENTRYPOINT [ "gopls" ]
