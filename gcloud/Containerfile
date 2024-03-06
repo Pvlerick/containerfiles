@@ -1,0 +1,4 @@
+FROM google/cloud-sdk:latest
+
+RUN echo 'alias uuid="cat /proc/sys/kernel/random/uuid"' >> /root/.bashrc
+RUN echo 'source /usr/share/google-cloud-sdk/completion.bash.inc' >> /root/.bashrc
