@@ -1,0 +1,11 @@
+FROM node:18-alpine
+
+WORKDIR /slidev
+
+RUN npm config set registry "https://registry.npmmirror.com" \
+  && npm install -g @slidev/cli @slidev/theme-default @slidev/theme-seriph \
+  && npm config delete registry
+
+ENV CHOKIDAR_USEPOLLING=true
+
+ENTRYPOINT [ "slidev", "--remote" ]
